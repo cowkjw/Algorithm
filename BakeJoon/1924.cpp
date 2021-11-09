@@ -42,5 +42,5 @@ int main() {
 		cout << "SUN";
 		break;
 	}
-
+	delete[] Month;
 }
