@@ -14,7 +14,7 @@ string solution(string new_id) {
 		{
 			if ('A' <= new_id[i] && new_id[i] <= 'Z')
 			{
-				answer.push_back(tolower(new_id[i])); // ¼Ò¹®ÀÚ·Î ¹Ù²ã¼­ push
+				answer.push_back(tolower(new_id[i])); // ì†Œë¬¸ìë¡œ ë°”ê¿”ì„œ push
 			}
 			else
 			{
@@ -26,7 +26,7 @@ string solution(string new_id) {
 		else
 		{
 			if (isdigit(new_id[i]) || new_id[i] == '-' || new_id[i] == '_' || new_id[i] == '.')
-				answer.push_back(new_id[i]); // ¼ıÀÚÀÌ°Å³ª Çã¶ôÇÑ ¹®ÀÚÀÏ¶§¸¸ push
+				answer.push_back(new_id[i]); // ìˆ«ìì´ê±°ë‚˜ í—ˆë½í•œ ë¬¸ìì¼ë•Œë§Œ push
 		}
 
 	}
@@ -35,9 +35,9 @@ string solution(string new_id) {
 
 	for (int i = 0; i < answer.size(); i++)
 	{
-		while (true) // . Ä¡È¯ Àü±îÁö °è¼Ó µ¹¸®±â
+		while (true) // . ì¹˜í™˜ ì „ê¹Œì§€ ê³„ì† ëŒë¦¬ê¸°
 		{
-			if (answer[i] == '.' && answer[i + 1] == '.')// ¸¸¾à ³» µÚ¿¡µµ .°¡ ¿Â´Ù¸é µÚ¿¡¸¦ »èÁ¦
+			if (answer[i] == '.' && answer[i + 1] == '.')// ë§Œì•½ ë‚´ ë’¤ì—ë„ .ê°€ ì˜¨ë‹¤ë©´ ë’¤ì—ë¥¼ ì‚­ì œ
 			{
 				answer.erase(i + 1, 1);
 			}
@@ -56,20 +56,20 @@ string solution(string new_id) {
 	{
 
 
-		if (answer.front() == '.') // ¸Ç ¾Õ¿¡ .ÀÌ ¿Â´Ù¸é »èÁ¦
+		if (answer.front() == '.') // ë§¨ ì•ì— .ì´ ì˜¨ë‹¤ë©´ ì‚­ì œ
 		{
-			answer.erase(0, 1);
+			answer.erase(answer.begin());
 		}
 		else if (answer.back() == '.')
 		{
-			answer.erase((answer.size() - 1), 1); // ¸Ç µÚ¿¡ .ÀÌ ¿Â´Ù¸é »èÁ¦
+			answer.erase((answer.size() - 1), 1); // ë§¨ ë’¤ì— .ì´ ì˜¨ë‹¤ë©´ ì‚­ì œ
 
 		}
 		else if (answer.size() > 15)
 		{
-			answer.erase(15, answer.size() - 15); // ¸¸¾à ¹®ÀÚ¿­ ±æÀÌ°¡ 15º¸´Ù Å©´Ù¸é »èÁ¦
+			answer.erase(15, answer.size() - 15); // ë§Œì•½ ë¬¸ìì—´ ê¸¸ì´ê°€ 15ë³´ë‹¤ í¬ë‹¤ë©´ ì‚­ì œ
 		}
-		else // 3°¡Áö ÄÉÀÌ½º°¡ ¾Æ¹«°Íµµ ¾Æ´Ï¶ó¸é ¸ØÃß±â
+		else // 3ê°€ì§€ ì¼€ì´ìŠ¤ê°€ ì•„ë¬´ê²ƒë„ ì•„ë‹ˆë¼ë©´ ë©ˆì¶”ê¸°
 		{
 			break;
 		}
@@ -77,7 +77,7 @@ string solution(string new_id) {
 
 	}
 
-	if (answer.size() <= 2 && !answer.empty()) // ¸¸¾à ºó ¹®ÀÚ¿­µµ ¾Æ´Ï°í ¹®ÀÚ¿­ ±æÀÌ°¡ 2ÀÚ ÀÌÇÏ¶ó¸é
+	if (answer.size() <= 2 && !answer.empty()) // ë§Œì•½ ë¹ˆ ë¬¸ìì—´ë„ ì•„ë‹ˆê³  ë¬¸ìì—´ ê¸¸ì´ê°€ 2ì ì´í•˜ë¼ë©´
 	{
 		while (answer.size() < 3)
 		{
@@ -86,7 +86,7 @@ string solution(string new_id) {
 		}
 
 	}
-	else if (answer.empty()) // ºó ¹®ÀÚ¿­ÀÌ¶ó¸é a¸¦ push
+	else if (answer.empty()) // ë¹ˆ ë¬¸ìì—´ì´ë¼ë©´ aë¥¼ push
 	{
 		for (int i = 0; i < 3; i++)
 			answer.push_back('a');
