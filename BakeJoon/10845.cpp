@@ -14,7 +14,7 @@ public:
 	{
 
 	}
-	void push(const int data)
+	void push(const int& data)
 	{
 		_top++;
 		_data[_top] = data;
