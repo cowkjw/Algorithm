@@ -6,7 +6,7 @@ int solution(string s) {
 	{
 		while (1)
 		{
-			auto it = s.find(arr[i]);
+			auto it = s.find(arr[i]); //unsigned int 
 			if (it == string::npos)
 				break;
 
