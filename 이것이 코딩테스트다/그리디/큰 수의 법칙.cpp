@@ -23,7 +23,7 @@ int main()
 
 	while (m--)
 	{
-		if (cnt == 3)
+		if (cnt == k)
 		{
 			res += vec[1];
 			cnt = 0;
