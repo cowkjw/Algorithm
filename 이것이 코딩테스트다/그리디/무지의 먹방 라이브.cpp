@@ -15,7 +15,7 @@ int solution(vector<int> food_times, long long k) {
 
 	if (sum <= k) // 총합이 k와 같거나 작다면 먹을 음식이 없음
 		return -1;
-	sum = 0;
+
 	priority_queue <pair<int, int>>food;
 	for (int i = 0; i < food_times.size(); i++)
 		food.push({ -food_times[i],i + 1 });
