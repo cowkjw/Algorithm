@@ -18,7 +18,7 @@ int main()
 	string ans;
 	int num = 0;
 
-	for (auto const& c : str)
+	for (const auto& c : str)
 	{
 		if (isdigit(c))
 		{
