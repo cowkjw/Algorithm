@@ -26,32 +26,9 @@ vector<string> solution(vector<string> quiz) {
     for(const auto& str : quiz)
     {
         vector<string> splitStr = split(str," ");
-        int sum = stoi(splitStr[0]);
-        short oper = 0;
-        for(int i = 1; i< splitStr.size();i++ )
-        {
-            if(splitStr[i]=="-")
-            {
-                oper = -1;
-                continue;
-            }
-            else if(splitStr[i]=="+")
-            {
-                oper = 1;
-                continue;
-            }
-            
-            if(oper)
-            {
-                sum+=stoi(splitStr[i])*oper;
-                oper = 0;
-            }
-            
-            if(splitStr[i]=="=")
-            {
-                answer.push_back(stoi(splitStr[i+1])==sum? "O":"X");
-            }
-        }
+        int sum = splitStr[1]=="+"? stoi(splitStr[0])+stoi(splitStr[2]):
+        stoi(splitStr[0])-stoi(splitStr[2]);
+        answer.push_back(stoi(splitStr[4])==sum? "O":"X");
     }
 
     
