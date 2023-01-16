@@ -12,7 +12,7 @@ vector<int> solution(int n, vector<string> words) {
     
     for(int i = 0;i<words.size();i++)
     {
-        if((i)%n==0)
+        if(i%n==0)
         {
             rot++;
         }
@@ -25,7 +25,7 @@ vector<int> solution(int n, vector<string> words) {
         }
         else if(se.find(words[i])!=se.end())
         {
-           answer[0] = i%n==0? 1 : (i % n)+1;
+            answer[0] = i%n==0? 1 : (i % n)+1;
             answer[1] = rot;
             break;
         }
