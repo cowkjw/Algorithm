@@ -8,7 +8,7 @@ using namespace std;
 
 int solution(vector<string> want, vector<int> number, vector<string> discount) {
     int answer = 0;
-   map<string,int> m;
+   unordered_map<string,int> m;
     
     for(int i = 0;i<want.size();i++)
     {
@@ -19,7 +19,7 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
     
     for(int i = 0;i<size;i++)
     {
-        map<string,int> temp = m; // 복사
+        unordered_map<string,int> temp = m; // 복사
         
         for(int j = i;j<10+i;j++)
         {
