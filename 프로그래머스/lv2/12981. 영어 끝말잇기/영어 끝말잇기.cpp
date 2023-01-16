@@ -8,7 +8,6 @@ using namespace std;
 vector<int> solution(int n, vector<string> words) {
     vector<int> answer{0,0};
     set<string> se;
-    int cnt = 0;
     int rot = 0;
     
     for(int i = 0;i<words.size();i++)
