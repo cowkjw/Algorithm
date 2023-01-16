@@ -21,9 +21,8 @@ vector<string> split(string str, string delimiter)
 
 
 string solution(string s) {
-	string answer = "";
+	
 	vector<string> splitStr = split(s, " ");
-
 	vector<int> v;
     
 	transform(splitStr.begin(), splitStr.end(), back_inserter(v), [](string str)
@@ -31,6 +30,5 @@ string solution(string s) {
 			return stoi(str);
 		});
     
-	answer += to_string(*min_element(v.begin(), v.end()))+ " " + to_string(*max_element(v.begin(), v.end()));
-	return answer;
+	return to_string(*min_element(v.begin(), v.end()))+ " " + to_string(*max_element(v.begin(), v.end()));;
 }
