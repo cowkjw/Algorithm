@@ -1,13 +1,14 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <map>
 
 
 using namespace std;
 
 int solution(vector<string> want, vector<int> number, vector<string> discount) {
     int answer = 0;
-    unordered_map<string,int> m;
+   map<string,int> m;
     
     for(int i = 0;i<want.size();i++)
     {
@@ -18,7 +19,7 @@ int solution(vector<string> want, vector<int> number, vector<string> discount) {
     
     for(int i = 0;i<size;i++)
     {
-        unordered_map<string,int> temp = m; // 복사
+        map<string,int> temp = m; // 복사
         
         for(int j = i;j<10+i;j++)
         {
