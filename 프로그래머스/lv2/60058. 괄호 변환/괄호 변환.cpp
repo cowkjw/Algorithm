@@ -46,7 +46,7 @@ string dfs(string p)
 		{
 			if (cnt == 0) // 올바른거 X
 			{
-				for_each(u.begin() + 1, u.end() - 1, [&](char& ch)
+				for_each(u.begin() + 1, u.end() - 1, [](char& ch)
 					{
 						if (ch == '(')
 							ch = ')';
