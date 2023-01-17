@@ -66,8 +66,5 @@ string dfs(string p)
 }
 
 string solution(string p) {
-	if (p.size() == 2)
-		return "()";
-	string answer = dfs(p);
-	return  answer;
+	return  dfs(p);
 }
