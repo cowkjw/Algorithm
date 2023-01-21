@@ -19,7 +19,7 @@ vector<string> split(string str, string delimiter)
 }
 
 string solution(string polynomial) {
-    string answer = "0";
+    string answer = "";
     vector<string> splitStr = split(polynomial," ");
     int cnt = 0;
     int temp= 0;
