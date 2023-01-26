@@ -22,24 +22,19 @@ int main()
 		cin >> num;
 		pq.push(-num);
 	}
-    
-    	if (n == 1 && -pq.top() == 1)
+	int ans = 0;
+
+	if (n == 1)
 	{
 		cout << 0;
 		return 0;
 	}
-	int ans = 0;
-
 	while (!pq.empty())
 	{
 		auto a = -pq.top();
-		if (!pq.empty()) pq.pop();
-		int b = 0;
-		if (!pq.empty())
-		{
-			b = -pq.top();
-			pq.pop();
-		}
+		pq.pop();
+		int b = -pq.top();
+		pq.pop();
 		if (!pq.empty())
 		{
 			pq.push(-(a + b));
