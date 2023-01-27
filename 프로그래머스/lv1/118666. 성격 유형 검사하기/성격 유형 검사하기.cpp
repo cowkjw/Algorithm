@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<pair<pair<char, int>, pair<char, int>>> personalType{ {{'R',0}, {'T',0} },{{'C',0}, {'F',0} },{{'J',0}, {'M',0} },{{'A',0}, {'N',0} } };
+vector<pair<pair<char, int>, pair<char, int>>> mbti{ {{'R',0}, {'T',0} },{{'C',0}, {'F',0} },{{'J',0}, {'M',0} },{{'A',0}, {'N',0} } };
 vector<int> score{ 3,2,1,0,1,2,3 };
 string solution(vector<string> survey, vector<int> choices) {
 	string answer = "";
@@ -13,7 +13,7 @@ string solution(vector<string> survey, vector<int> choices) {
 	{
 		if (choices[i] > 4)
 		{
-			for_each(personalType.begin(), personalType.end(), [&](pair<pair<char, int>, pair<char, int>>& a) {
+			for_each(mbti.begin(), mbti.end(), [&](pair<pair<char, int>, pair<char, int>>& a) {
 				if (survey[i][1] == a.first.first)
 				{
 					a.first.second += score[choices[i] - 1];
@@ -26,7 +26,7 @@ string solution(vector<string> survey, vector<int> choices) {
 		}
 		else if (choices[i] < 4)
 		{
-			for_each(personalType.begin(), personalType.end(), [&](pair<pair<char, int>, pair<char, int>>& a) {
+			for_each(mbti.begin(), mbti.end(), [&](pair<pair<char, int>, pair<char, int>>& a) {
 				if (survey[i][0] == a.first.first)
 				{
 					a.first.second += score[choices[i] - 1];
@@ -37,9 +37,9 @@ string solution(vector<string> survey, vector<int> choices) {
 				}
 				});
 		}
-		}
+	}
 
-	for (const auto& pType : personalType)
+	for (const auto& pType : mbti)
 	{
 		if (pType.first.second != pType.second.second)
 		{
