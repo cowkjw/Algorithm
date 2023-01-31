@@ -1,13 +1,5 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <bits/stdc++.h>
-
-#define INF 987654321
-#define X first 
-#define Y second
-
 using namespace std;
-
-
 int main()
 {
 	ios::sync_with_stdio(false);
@@ -29,7 +21,6 @@ int main()
 	while (start <= end)
 	{
 		int mid = (start + end) / 2;
-		int cnt = 0;
 		int tempBudget = 0;
 		for (int i = 0; i < n; i++)
 		{
