@@ -50,10 +50,8 @@ int main()
 	cin.tie(NULL);
 
 	int t = 0;
-	while (true)
+	while (cin >> n && n != 0)
 	{
-		cin >> n;
-		if (n == 0) break;
 		t++;
 		for (int i = 0; i < n; i++)
 		{
