@@ -7,7 +7,7 @@ int solution(int n, int a, int b)
 {
     int answer = 0;
 
-    while(abs(a-b)!=0)
+    while(a!=b)
     {
         answer++;
         a=ceil(float(a)/2);
