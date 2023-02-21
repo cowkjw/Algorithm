@@ -11,7 +11,6 @@ int solution(int n, int a, int b)
     {
        
         answer++;
-        cout<<a<<endl;
         a=ceil(float(a)/2);
         b=ceil(float(b)/2);
     }
