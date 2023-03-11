@@ -7,12 +7,8 @@ int solution(int n)
     
     while(n)
     {
-        while(n%2==0)
-        {
-            n/=2;
-        }
-        n--;
-        ans++;
+        ans+=n%2;
+        n/=2;
     }
     return ans;
 }
