@@ -19,7 +19,6 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 				return pos;
 		}
 		pos.first -= n;
-		return pos;
         break;
     case 'S':
 		for (int i = 1; i <= n; i++)
@@ -28,7 +27,6 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 				return pos;
 		}
 		pos.first += n;
-		return pos;
         break;
     case 'W':
 		for (int i = 1; i <= n; i++)
@@ -37,7 +35,6 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 				return pos;
 		}
 		pos.second -= n;
-		return pos;
         break;
     case 'E':
 		for (int i = 1; i <= n; i++)
