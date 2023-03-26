@@ -73,7 +73,7 @@ vector<int> solution(vector<string> park, vector<string> routes) {
     for(const auto& route : routes)
     {
         char op = route.front();
-        char n = route.back()-'0';// int로
+        int n = route.back()-'0';// int로
         
         Moving(pos,park,op,n);
         
