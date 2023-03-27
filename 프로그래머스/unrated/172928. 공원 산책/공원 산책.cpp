@@ -5,7 +5,7 @@
 using namespace std;
 
 
-pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op, int n)
+void Moving(pair<int, int>& pos, const vector<string>& park, char op, int n)
 {
     auto h = park.size();
     auto w = park[0].size();
@@ -16,7 +16,7 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 		for (int i = 1; i <= n; i++)
 		{
 			if (pos.first - i < 0 || park[pos.first - i][pos.second] == 'X')
-				return pos;
+				return;
 		}
 		pos.first -= n;
         break;
@@ -24,15 +24,15 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 		for (int i = 1; i <= n; i++)
 		{
 			if (pos.first + i >= h || park[pos.first + i][pos.second] == 'X')
-				return pos;
-		}
+				return;
+        }
 		pos.first += n;
         break;
     case 'W':
 		for (int i = 1; i <= n; i++)
 		{
 			if (pos.second - i <0 || park[pos.first][pos.second-i] == 'X')
-				return pos;
+				return;
 		}
 		pos.second -= n;
         break;
@@ -40,13 +40,11 @@ pair<int, int>& Moving(pair<int, int>& pos, const vector<string>& park, char op,
 		for (int i = 1; i <= n; i++)
 		{
 			if (pos.second + i >=w || park[pos.first][pos.second + i] == 'X')
-				return pos;
+				return;
 		}
 		pos.second += n;
         break;
     }
-
-    return pos;
 }
 
 vector<int> solution(vector<string> park, vector<string> routes) {
