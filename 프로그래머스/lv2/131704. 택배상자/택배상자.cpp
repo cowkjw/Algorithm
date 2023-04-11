@@ -9,7 +9,7 @@ int solution(vector<int> order) {
 	int answer = 0;
 	queue<int> q;
 	stack<int> s;
-	bool carry = false;
+
 	for (int i = 1; i <= order.size(); i++)
 	{
 		q.push(i);
@@ -40,9 +40,9 @@ int solution(vector<int> order) {
 					q.pop(); // 뺀다
 					s.push(front); // 보조에 넣음
 				}
-				else if (q.empty()&&!s.empty())
+				else if (q.empty()&&!s.empty()) // 컨테이너 비었지만 보조가 있는 경우 
 				{
-					return answer;
+					return answer; 
 				}
 
 			}
