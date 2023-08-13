@@ -6,43 +6,45 @@
 #define Y second
 
 using namespace std;
+
+int a, b, c;
 int arr[101];
-
 int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	cin >> a >> b >> c;
+
+	for (int i = 0; i < 3; i++)
 	{
-		ios::sync_with_stdio(false);
-		cin.tie(NULL);
-
-		int a, b, c;
-		cin >> a >> b >> c;
-
-		for (int i = 0; i < 3; i++)
+		int s, e;
+		cin >> s >> e;
+		for (; s < e; s++)
 		{
-			int s, e;
-			cin >> s >> e;
-
-			for (int j = s; j < e; j++)
-			{
-				arr[j]++;
-			}
+			arr[s]++;
 		}
-
-		int ans = 0;
-		for (int i = 1; i < 101; i++)
-		{
-			if (arr[i] == 1)
-			{
-				ans += a;
-			}
-			else if (arr[i] == 2)
-			{
-				ans += b*2;
-			}
-			else if(arr[i]==3)
-			{
-				ans += c*3;
-			}
-		}
-		cout << ans;
-		return 0;
 	}
+	int sum = 0;
+	for (auto i : arr)
+	{
+		if (i == 1)
+		{
+			sum += a;
+		}
+		else if (i == 2)
+		{
+
+			sum += b*2;
+		}
+		else if (i == 3)
+		{
+			sum += c*3;
+
+		}
+	}
+
+	cout << sum;
+
+	return 0;
+}
