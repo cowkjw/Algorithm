@@ -1,33 +1,25 @@
 #include <bits/stdc++.h>
 
+#define _CRT_SECURE_NO_WARNINGS
 #define INF 987654321
 #define X first 
 #define Y second
 
-
 using namespace std;
 
-
-bool Palindrome(const string& str)
-{
-	for (int i = 0; i < str.size() / 2; i++)
-	{
-		if (str[i] != str[str.size() - 1 - i])
-		{
-			return 0;
-		}
-	}
-	return 1;
-}
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-
+	cin.tie(nullptr);
 
 	string str;
 	cin >> str;
-	cout<<Palindrome(str);
+
+	string temp = str;
+
+	reverse(temp.begin(), temp.end());
+	if (temp == str) cout << 1;
+	else cout << 0;
 
 	return 0;
 }
