@@ -12,7 +12,7 @@ int main(void)
 
 	cin >> s;
 	for (char a : s)cnt[a - 'A']++;
-	for (int i = 26; i >= 0; i--)
+	for (int i = 25; i >= 0; i--)
 	{
 		if (cnt[i]) 
 		{
