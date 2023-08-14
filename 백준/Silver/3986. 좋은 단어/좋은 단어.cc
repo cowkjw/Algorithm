@@ -10,18 +10,12 @@ int main(void)
 	int n;
 	cin >> n;
 
-	vector<string> v;
 
+	int answer = 0;
 	while (n--)
 	{
 		string str;
 		cin >> str;
-		v.push_back(str);
-	}
-
-	int answer = 0;
-	for (const auto& str : v)
-	{
 		stack<char> s;
 		for (const auto ch : str)
 		{
@@ -35,6 +29,7 @@ int main(void)
 
 		if (s.empty()) answer++;
 	}
+
 	cout << answer;
 	return 0;
 }
