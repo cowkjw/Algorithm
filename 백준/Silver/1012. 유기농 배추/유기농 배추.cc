@@ -3,8 +3,8 @@
 typedef long long ll;
 using namespace std;
 
-vector<pair<int, int>> dir {{1, 0}, { 0,1 }, { -1,0 }, { 0,-1 }};// { 1, 1 }, { 1,-1 }, { -1,1 }, { -1,-1 }};
-int board[101][101];
+vector<pair<int, int>> dir {{1, 0}, { 0,1 }, { -1,0 }, { 0,-1 }};
+int board[50][50];
 int n, m;
 
 void dfs(int x, int y)
@@ -31,10 +31,10 @@ int main(void)
 	while (t--)
 	{
 		int pos;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 50; i++)
 		{
 
-			fill(board[i], board[i] + 100, 0);
+			fill(board[i], board[i] + 50, 0);
 		}
 
 		cin >> n >> m >> pos;
