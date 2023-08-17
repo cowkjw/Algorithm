@@ -29,10 +29,7 @@ int main(void)
 
 			if (prevCloud != -1)
 			{
-				if (w > prevCloud)
-				{
-					board[h][w] = w - prevCloud;
-				}
+			    board[h][w] = w - prevCloud;
 			}
 			else
 			{
