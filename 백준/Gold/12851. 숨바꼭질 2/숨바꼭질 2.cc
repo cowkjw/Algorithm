@@ -1,70 +1,46 @@
 #include <bits/stdc++.h>
-
+#define _CRT_SECURE_NO_WARNINGS
+#define INF 987654321
 using namespace std;
-
-
-bool vis[100001];
-int n, k,cnt;
-
-int bfs(int start)
+const vector<pair<int, int>> dir{ {1,0} ,{-1,0} ,{0,1} ,{0,-1} };
+int n,k,res=INF,m;
+queue<int> q;
+int dist[100001];
+int vis[200000];
+int cnt[200000];
+void go(int x)
 {
-	queue<pair<int,int>> q;
-	q.push({ start,0 });
-    
-	int ansTime = 0;
+	q.push(x);
+	vis[x] = 1;
+	cnt[x] = 1;
 	while (!q.empty())
 	{
-		
-		int cur = q.front().first;
-		int time = q.front().second;
+		int cur = q.front();
 		q.pop();
-		vis[cur] = true;
 
-		int back = cur - 1;
-		int front = cur + 1;
-		int jump = 2 * cur;
-
-		if (k == cur&&cnt==0)
+		for (int next : {cur + 1, cur - 1, cur * 2})
 		{
-		
-			cnt++;
-			ansTime = time;
-			continue;
+			if (next >= 0 && next < 200000)
+			{
+				if (!vis[next])
+				{
+					q.push(next);
+					vis[next] = vis[cur]+1;
+					cnt[next] += cnt[cur];
+				}
+				else if (vis[next] == vis[cur] + 1)
+				{
+					cnt[next] += cnt[cur];
+				}
+			}
 		}
-
-		if (ansTime == time&&k==cur)
-		{
-			cnt++;
-			continue;
-		}
-
-
-		if (back >= 0 && !vis[back])
-		{
-			q.push({ back,time + 1 });
-		}
-		if (front <= 100000 && !vis[front])
-		{
-			q.push({ front,time + 1 });
-		}
-		if (jump <= 100000 && !vis[jump])
-		{
-			q.push({ jump,time + 1 });
-		}
-
 	}
-	return ansTime;
+	return;
 }
-int main()
+int main(void)
 {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-
 	cin >> n >> k;
-
-	int mTime = bfs(n);
-
-	cout << mTime << '\n';
-	cout << cnt;
+	go(n);
+	cout << vis[k] - 1 << '\n'<< cnt[k];
+	return 0;
 }
-
