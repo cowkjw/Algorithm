@@ -1,66 +1,45 @@
-#include <bits/stdc++.h>
-#define INF 987654321
-typedef long long ll;
-using namespace std;
-
-
-vector<pair<int, int>> dir{ {1, 0}, { 0,1 }, { -1,0 }, { 0,-1 } };
-int n, m, ret;
-vector<string> board;
-int x1, Y1, x2, y2;
-int vis[301][301];
-
-int main(void)
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL); cout.tie(NULL);
-
-	cin >> n >> m;
-	cin >> x1 >> Y1 >> x2 >> y2;
-	x1--, x2--, Y1--, y2--;
-	for (int i = 1; i <= n; i++)
-	{
-		string str;
-		cin >> str;
-		board.push_back(str);
-	}
-
-	while (board[x2][y2] != 'X')
-	{
-		fill(&vis[0][0], &vis[0][0] + 301 * 301, 0);
-		queue<pair<int, int>> q;
-		q.push({ x1,Y1 });
-		vis[x1][Y1] = 1;
-		while (!q.empty())
-		{
-			int x, y;
-			tie(x, y) = q.front();
-			q.pop();
-
-			for (const auto& di : dir)
-			{
-				int nx = x + di.first;
-				int ny = y + di.second;
-
-				if (nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
-				if (vis[nx][ny]) continue;
-				if (board[nx][ny] == '#') // 도착점
-				{
-					board[nx][ny] = 'X';
-					break;
-				}
-				if (board[nx][ny] == '1') // 학생
-				{
-					vis[nx][ny] = 1; // 방문처리
-					board[nx][ny] = '0'; // 쓰러뜨림
-					continue;
-				}
-				vis[nx][ny] = 1; // 방문처리
-				q.push({ nx,ny }); // 0이면 계속 넣어서 퍼져나가게
-			}
-		}
-		ret++;
-	}
-
-	cout << ret;
+#include <stdio.h>
+#include<algorithm>
+#include<queue>
+using namespace std; 
+char a[301][301];
+int n, m, x1, y1, x2, y2; 
+typedef pair<int, int> pii;
+int visited[301][301];
+const int dy[4] = {-1, 0, 1, 0};
+const int dx[4] = {0, 1, 0, -1};
+int ret; 
+queue<int> q;
+int main(){
+    scanf("%d %d", &n, &m);
+    scanf("%d %d %d %d", &y1, &x1, &y2, &x2);
+    y1--, x1--, y2--, x2--; 
+    for(int i = 0; i < n; i++){
+        scanf("%s", a[i]); 
+    }  
+    q.push(1000 * y1 + x1);
+    visited[y1][x1] = 1; 
+    int cnt = 0; 
+    while(a[y2][x2] != '0'){ 
+        cnt++;
+        queue<int> temp; 
+        while(q.size()){
+            int y = q.front() / 1000; 
+            int x = q.front() % 1000;  
+            q.pop();  
+            for(int i = 0; i < 4; i++){
+                int ny = y + dy[i]; 
+                int nx = x + dx[i];
+                if(ny < 0 || ny >= n || nx < 0 || nx >= m || visited[ny][nx]) continue; 
+                visited[ny][nx] = cnt;  
+                if(a[ny][nx] != '0'){
+                    a[ny][nx] = '0'; 
+                    temp.push(1000 * ny + nx);
+                }
+                else q.push(1000 * ny + nx); 
+            }
+        }
+        q = temp;  
+    }
+    printf("%d\n", visited[y2][x2]); 
 }
