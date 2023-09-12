@@ -13,7 +13,7 @@ int answer = 1e9;
 void go(pair<int, int> s, vector<string> board)
 {
     queue<pair<pair<int, int>,int>>q;
-    q.push({ s,0 });
+    q.push({ s,1 });
     vis[s.first][s.second] = 1;
     while (!q.empty())
     {
@@ -22,10 +22,6 @@ void go(pair<int, int> s, vector<string> board)
         y = q.front().first.second;
         cost = q.front().second;
         q.pop();
-        if (x == e.first && y == e.second)
-        {
-            answer = min(answer, cost);
-        }
         for (int i = 0; i < 4; i++)
         {
             int nx = dx[i] + x;
@@ -42,7 +38,8 @@ void go(pair<int, int> s, vector<string> board)
             nx -= dx[i];
             ny -= dy[i];
             if (vis[nx][ny]) continue;
-          
+            
+            if(board[nx][ny]=='G') vis[nx][ny] = min(cost,vis[nx][ny]);
             vis[nx][ny] = cost;
             q.push({ { nx,ny }, cost + 1 });
         }
@@ -64,7 +61,5 @@ int solution(vector<string> board) {
 
     go(s, board);
 
-
-
-    return (answer == 1e9 ? -1 : answer);
+    return vis[e.first][e.second] == 0 ? -1 :vis[e.first][e.second] ;
 }
