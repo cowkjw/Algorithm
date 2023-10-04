@@ -1,44 +1,35 @@
 #include <bits/stdc++.h>
-#define INF 987654321
-typedef long long ll;
 using namespace std;
 
-int n, x;
+int arr[2000001] = {};
+int N[100001] = {};
 
-int main(void)
+int main()
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
 
-	cin >> n;
-	vector<int> v(n);
-	for (int i = 0; i < n; i++)
-	{
-		cin >> v[i];
-	}
-	sort(v.begin(), v.end());
-	cin >> x;
-	int s = 0;
-	int e = n-1;
-	int ret = 0;
-	while (s < e && e < n)
-	{
-		int sum = v[s] + v[e];
 
-		if (sum < x)
-		{
-			s++;
-		}
-		else if (sum > x)
-		{
-			e--;
-		}
-		else
-		{
-			e--;
-			ret++;
-		}
+	int size, X, cnt = 0;
+
+	cin >> size;
+
+
+
+
+	for (int i = 0; i < size; i++)
+	{
+		cin >> N[i];
 	}
-	cout << ret;
+
+	cin >> X;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[X - N[i]] > 0&&X-N[i]>0)
+			cnt++;
+
+		arr[N[i]] ++;
+	}
+
+	cout << cnt;
 	return 0;
 }
