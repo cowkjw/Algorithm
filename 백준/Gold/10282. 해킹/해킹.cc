@@ -3,8 +3,8 @@
 typedef long long ll;
 using namespace std;
 int t, n, d, c;
-vector<pair<int,int>> com[100001];
-int dist[100001];
+vector<pair<int,int>> com[10001];
+int dist[10001];
 
 void go(int start)
 {
@@ -42,7 +42,7 @@ int main(void)
 	while (t--)
 	{
 		cin >> n >> d >> c;
-		for (int i = 0; i < 100001; i++)
+		for (int i = 0; i < 10001; i++)
 		{
 			com[i].clear();
 			dist[i] = INF;
