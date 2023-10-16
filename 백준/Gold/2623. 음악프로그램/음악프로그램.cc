@@ -21,26 +21,23 @@ void topologysort()
 		q.pop();
 		result.push_back(now);
 
-		for (int i = 0; i < graph[now].size(); i++)
+		for (auto i : graph[now])
 		{
-			indegree[graph[now][i]] -= 1;
+			indegree[i] -= 1;
 
-			if (indegree[graph[now][i]] == 0)
+			if (indegree[i] == 0)
 			{
-				q.push(graph[now][i]);
+				q.push(i);
 			}
 		}
 	}
-
-	if (result.size() == n)
-	{
-		for (auto i : result)
-		{
-			cout << i << '\n';
-		}
+    
+    if(result.size()==n)
+	for (auto i : result)
+    {
+		cout << i << '\n';
 	}
-	else
-		cout << 0;
+    else cout<<0;
 }
 
 int main(void)
@@ -54,19 +51,19 @@ int main(void)
 		int pd;
 		cin >> pd;
 		int pre;
-		cin >> pre;
+        cin>> pre;
 		for (int j = 1; j < pd; j++)
 		{
 			int num;
 			cin >> num;
-
-			graph[pre].push_back(num);
+            graph[pre].push_back(num);
 			indegree[num]++;
-			pre = num;
+            pre = num;
 		}
 	}
 
 	topologysort();
+
 
 	return 0;
 }
