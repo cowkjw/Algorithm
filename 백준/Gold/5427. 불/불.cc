@@ -52,7 +52,7 @@ void go()
 			}
 			if (board[nx][ny] == -1) continue; // 벽
 			if (dist[nx][ny]) continue; // 이미 처리한 곳
-			if (fire[nx][ny] != 0 && fire[nx][ny]<=dist[x][y]+1) continue; // 불이 있고 넘는 경우
+			if (fire[nx][ny] != 0 && dist[x][y] + 1 >= fire[nx][ny]) continue; // 불이 있고 넘는 경우
 			dist[nx][ny] = dist[x][y] + 1;
 			q.push({ nx,ny });
 		}
