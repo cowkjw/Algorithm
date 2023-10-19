@@ -7,9 +7,11 @@ int vis[301][301];
 int dx[]{ 1,2,2,1,-1,-2,-2,-1 };
 int dy[]{ -2,-1,1,2,2,1,-1,-2 };
 int sx, sy, ex, ey;
+int ret;
 void Init()
 {
 	memset(vis, 0, sizeof(vis));
+	ret = 0;
 }
 
 void go(int x, int y)
@@ -23,6 +25,11 @@ void go(int x, int y)
 		int a, b;
 		tie(a, b) = q.front();
 		q.pop();
+		if (a == ex && b == ey)
+		{
+			ret = vis[a][b];
+			return;
+		}
 		for (int i = 0; i < 8; i++)
 		{
 			int nx = a + dx[i];
@@ -46,7 +53,7 @@ int main(void)
 		cin >> sx >> sy;
 		cin >> ex >> ey;
 		go(sx, sy);
-		cout << vis[ex][ey]-1 << '\n';
+		cout << ret-1 << '\n';
 	}
 	return 0;
 }
