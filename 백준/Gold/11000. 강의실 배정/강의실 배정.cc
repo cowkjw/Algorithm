@@ -2,8 +2,7 @@
 using namespace std;
 #define ll long long
 #define INF 987654321
-int n, m;
-vector<int> graph[200001];
+int n;
 vector<pair<int, int>> v;
 int main(void)
 {
