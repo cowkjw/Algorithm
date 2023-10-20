@@ -4,10 +4,10 @@
 #include<algorithm>
 #include<set>
 using namespace std;
-vector<int> result;
+set<int> result;
 void johab(vector<int> numbers,vector<int> v,int idx){
     if(v.size()==2){
-        result.push_back(v[0]+v[1]);
+        result.insert(v[0]+v[1]);
         return;
     }
     for(int i=idx;i<numbers.size();i++)
@@ -20,8 +20,8 @@ void johab(vector<int> numbers,vector<int> v,int idx){
 
 vector<int> solution(vector<int> numbers) {
     vector<int> v;
+    vector<int> answer;
     johab(numbers,v,0);
-    sort(result.begin(), result.end());
-    result.erase(unique(result.begin(), result.end()), result.end());
-    return result;
+    answer.assign(result.begin(), result.end());
+    return answer;
 }
