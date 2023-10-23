@@ -25,7 +25,6 @@ void go(int cnt, int sum, vector<int> picks, vector<string> minerals, int idx)
 			if (picks[i] != 0)
 			{
 				int cost = 1;
-				int dis = abs(m[minerals[cnt]] - i);
 				if (m[minerals[cnt]] < i)
 				{
 					cost = pow(5, abs(m[minerals[cnt]] - i));
@@ -39,7 +38,6 @@ void go(int cnt, int sum, vector<int> picks, vector<string> minerals, int idx)
 	else // 그대로 넣음
 	{
 		int cost = 1;
-		int dis = abs(m[minerals[cnt]] - idx);
 		if (m[minerals[cnt]] < idx)
 		{
 			cost = pow(5, abs(m[minerals[cnt]] - idx));
