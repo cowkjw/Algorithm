@@ -9,9 +9,6 @@ int main(void)
 {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-
-	int ret = 1e9;
-
 	cin >> n >> m;
 	vector<int> v(n);
 	vector<int> v2(m);
@@ -36,8 +33,7 @@ int main(void)
 		if (binary_search(v.begin(), v.end(), i)) b++;
 	}
 	b = v2.size() - b;
-	ret = min(ret, a + b);
 
-	cout << ret;
+	cout << a+b;
 	return 0;
 }
