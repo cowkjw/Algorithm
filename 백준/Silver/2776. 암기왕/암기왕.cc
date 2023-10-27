@@ -1,31 +1,65 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+#define ll long long
+#define INF 987654321
 
-int main()
+
+int main(void)
 {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
 	int t;
 	cin >> t;
 	while (t--)
 	{
-	unordered_map<int, int> m;
-		int n1, n2;
-		cin >> n1;
-		for (int i = 0; i < n1; i++)
+		int n;
+		cin >> n;
+		vector<int> v(n);
+
+		for (int i = 0; i < n; i++)
 		{
-			int num;
-			cin >> num;
-			m[num]=1;
+			cin >> v[i];
 		}
-		cin >> n2;
-		for (int i = 0; i < n2; i++)
+
+		sort(v.begin(), v.end());
+
+		int m;
+		cin >> m;
+		vector<int> v2(m);
+		for (int i = 0; i < m; i++)
 		{
-			int num;
-			cin >> num;
-			cout << m[num] << '\n';
+			cin >> v2[i];
+		}
+
+		for (const auto i : v2)
+		{
+			int start = 0;
+			int end = n - 1;
+
+			while (1)
+			{
+				int mid = (start + end) / 2;
+
+				if (v[mid] > i)
+				{
+					end = mid - 1;
+				}
+				else if (v[mid] < i)
+				{
+					start = mid + 1;
+				}
+				else
+				{
+					cout << "1\n";
+					break;
+				}
+
+				if (start > end)
+				{
+					cout << "0\n";
+					break;
+				}
+			}
 		}
 	}
 
