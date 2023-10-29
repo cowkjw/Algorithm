@@ -4,7 +4,7 @@
 #include <algorithm>
 
 using namespace std;
-set<vector<string>> s;
+set<set<string>> s;
 int vis[9];
 
 bool check(string str, string banned_id)
@@ -24,11 +24,10 @@ bool check(string str, string banned_id)
 	return true;
 }
 
-void go(vector<string> user_id, vector<string> banned_id, vector<string> v, int idx)
+void go(vector<string> user_id, vector<string> banned_id, set<string> v, int idx)
 {
 	if (idx == banned_id.size())
 	{
-		sort(v.begin(), v.end());
 		s.insert(v);
 		return;
 	}
@@ -38,9 +37,9 @@ void go(vector<string> user_id, vector<string> banned_id, vector<string> v, int 
 		if (vis[i]) continue;
 		if (!check(user_id[i], banned_id[idx])) continue;
 		vis[i] = 1;
-		v.push_back(user_id[i]);
+		v.insert(user_id[i]);
 		go(user_id, banned_id, v, idx + 1);
-		v.pop_back();
+		v.erase(user_id[i]);
 		vis[i] = 0;
 	}
 }
