@@ -10,11 +10,7 @@ vector<int> solution(int n, int s) {
     
     while(s!=0)
     {
-        int tmp = s/n;
-        if(s%n!=0)
-        {
-           tmp++;
-        }
+        int tmp = s%n == 0 ? s/n : s/n+1;
         answer.push_back(tmp);
         s-=tmp;
         n--;
