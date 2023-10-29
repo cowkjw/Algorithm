@@ -1,7 +1,5 @@
 #include <string>
 #include <vector>
-#include <cmath>
-#include <iostream>
 #include <algorithm>
 
 using namespace std;
@@ -21,9 +19,6 @@ vector<int> solution(int n, int s) {
         s-=tmp;
         n--;
     }
-
-
     sort(answer.begin(),answer.end());
-    
     return answer;
 }
