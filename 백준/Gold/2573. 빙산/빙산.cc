@@ -5,9 +5,9 @@
 #define Y second
 using namespace std;
 typedef long long ll;
-
+//vector<pair<int, int>> del{ {1,1} ,{1,-1} ,{-1,1} ,{-1,-1} ,{1,0} ,{-1,0} ,{0,1} ,{0,-1} }; // 8방향
 const vector<pair<int, int>> dir{ {-1,0} ,{0,1} ,{1,0} ,{0,-1} }; // 북 동 남 서
-
+int room[301][301];
 int n, m;
 // 0 북 1 동 2 남 3 서
 
@@ -45,33 +45,28 @@ void BFS()
 		if (board[x][y] > 0) q.push({ x,y }), v.push_back({ x,y });
 	}
 }
+void DFS(int x, int y)
+{
+	vis[x][y] = 1;
+	for (const auto& di : dir)
+	{
+		int nx = di.first + x;
+		int ny = di.second + y;
+		if (nx < 0 || ny < 0 || nx >= n || ny >= m || vis[nx][ny] || board[nx][ny] == 0) continue;
+		DFS(nx, ny);
+	}
+}
+
 
 bool Check()
 {
 	int cnt = 0;
+
 	for (int i = 0; i < v.size(); i++)
 	{
 		if (vis[v[i].first][v[i].second]) continue;
-		queue<pair<int, int>> q1;
 		cnt++;
-		q1.push({ v[i].first,v[i].second });
-		vis[v[i].first][v[i].second] = 1;
-		while (!q1.empty())
-		{
-			int x, y;
-			tie(x, y) = q1.front();
-			q1.pop();
-
-			for (const auto& di : dir)
-			{
-				int nx = di.first + x;
-				int ny = di.second + y;
-				if (nx < 0 || ny < 0 || nx >= n || ny >= m || board[nx][ny] == 0 || vis[nx][ny]) continue;
-				q1.push({ nx,ny });
-				vis[nx][ny] = 1;
-			}
-		}
-
+		DFS(v[i].first, v[i].second);
 	}
 	return cnt >= 2;
 }
@@ -84,23 +79,24 @@ int main()
 	{
 		for (int j = 0; j < m; j++)
 		{
-			cin >> board[i][j];
+			cin >>board[i][j];
 			if (board[i][j]) q.push({ i,j });
 		}
 	}
 	int ret = 0;
 	while (1)
 	{
+		v.clear();
 		ret++;
 		BFS();
-        if (v.size() == 0)
+        	if (v.size() == 0)
 		{
 			cout << 0;
 			return 0;
 		}
 		if (Check()) break;
 		memset(vis, 0, sizeof(vis));
-		v.clear();
+
 	}
 	cout << ret;
 	return 0;
