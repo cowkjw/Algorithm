@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int vis[101][101][101][101];
+int vis[11][11][11][11];
 int solution(string dirs) {
     int answer = 0;
 
