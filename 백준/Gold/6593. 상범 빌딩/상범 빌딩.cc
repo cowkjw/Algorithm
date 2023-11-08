@@ -3,8 +3,8 @@ using namespace std;
 typedef long long ll;
 #define INF 987654321
 int l, r, c;
-int vis[31][31][31]; // 무한 루프 체크
-char board[31][31][31]; // 무한 루프 체크
+int vis[31][31][31]; 
+char board[31][31][31]; 
 const int dx[]{ 0,0, 0,1,0,-1 };
 const int dy[]{ 0,0,1,0,-1,0 };
 const int dz[]{ -1,1,0,0,0,0 };
