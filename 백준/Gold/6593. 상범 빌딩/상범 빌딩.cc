@@ -19,6 +19,7 @@ bool Check(int ny, int nx, int nz)
 {
 	return (ny < 0 || nx < 0 || nz < 0 || ny >= r || nx >= c || nz >= l);
 }
+
 void BFS(int y, int x, int z) // 행 열 층
 {
 	queue<Pos> q;
@@ -30,6 +31,8 @@ void BFS(int y, int x, int z) // 행 열 층
 		Pos cur = q.front();
 		q.pop();
 		
+		if (cur.y == ey && cur.x == ex && cur.z == ez) return;
+
 		for (int i = 0; i < 6; i++)
 		{
 			int ny = cur.y + dy[i];
@@ -50,7 +53,6 @@ void Init()
 	memset(board, ' ', sizeof(board));
 	memset(vis, 0, sizeof(vis));
 }
-
 
 int main(void)
 {
