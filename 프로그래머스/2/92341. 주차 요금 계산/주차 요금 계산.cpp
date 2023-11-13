@@ -60,7 +60,7 @@ vector<int> solution(vector<int> fees, vector<string> records) {
 		int fee;
 		if (f.second > fees[0])  // 누적시간 넘었다면
 		{
-			fee = fee = fees[1] + ((f.second - fees[0] + fees[2] - 1) / fees[2]) * fees[3];
+			fee = fees[1] + ((f.second - fees[0] + fees[2] - 1) / fees[2]) * fees[3];
 		}
 		else
 		{
