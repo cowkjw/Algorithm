@@ -13,7 +13,11 @@ bool comp(Medal a, Medal b)
 {
 	if (a.g == b.g)
 	{
-		if (a.s == b.s) return a.d > b.d;
+		if (a.s == b.s)
+		{
+			if (a.d == b.d) return a.pos < b.pos;
+			else return a.d > b.d;
+		}
 		else return a.s > b.s;
 	}
 	return a.g > b.g;
@@ -24,16 +28,29 @@ int main(void)
 	cin.tie(NULL);
 	cin >> n >> k;
 
-	vector<Medal> v(n + 1);
-	for (int i = 1; i <= n; i++)
+	vector<Medal> v(n);
+	for (int i = 0; i < n; i++)
 	{
 		int p,a, b, c;
 		cin >>p>> a >> b >> c;
 		v[i] = Medal{p,a,b,c };
 	}
 	sort(v.begin(), v.end(), comp);
-	auto it = find_if(v.begin(), v.end(), [](Medal tmp) {return tmp.pos == k; });
-	cout << it - v.begin();
+
+	int ret = 1;
+	for (int i = 0; i < n; i++)
+	{
+		
+		if (i!=0&&(v[i].g < v[i - 1].g || v[i].s < v[i - 1].s || v[i].d < v[i - 1].d))
+		{
+			ret++;
+		}
+		if (v[i].pos == k)
+		{
+			cout << ret;
+			break;
+		}
+	}
 
 	return 0;
 }
