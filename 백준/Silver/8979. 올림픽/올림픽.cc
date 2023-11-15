@@ -38,18 +38,20 @@ int main(void)
 	sort(v.begin(), v.end(), comp);
 
 	int ret = 1;
+	int rank = 1;
 	for (int i = 0; i < n; i++)
 	{
 		
 		if (i!=0&&(v[i].g < v[i - 1].g || v[i].s < v[i - 1].s || v[i].d < v[i - 1].d))
 		{
-			ret++;
+			rank = ret;
 		}
 		if (v[i].pos == k)
 		{
-			cout << ret;
+			cout << rank;
 			break;
 		}
+		ret++;
 	}
 
 	return 0;
