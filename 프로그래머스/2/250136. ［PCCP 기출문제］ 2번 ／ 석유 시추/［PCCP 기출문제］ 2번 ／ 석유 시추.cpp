@@ -6,7 +6,7 @@
 #include <algorithm>
 using namespace std;
 
-int arr[501];
+vector<int> arr(501,0);
 int vis[501][501];
 const int dx[4] {1,0,-1,0};
 const int dy[4] {0,1,0,-1};
@@ -57,7 +57,7 @@ int solution(vector<vector<int>> land) {
         }
     }
     
-    sort(arr,arr+501);
+    sort(arr.begin(),arr.end());
     
     return arr[500];
 }
