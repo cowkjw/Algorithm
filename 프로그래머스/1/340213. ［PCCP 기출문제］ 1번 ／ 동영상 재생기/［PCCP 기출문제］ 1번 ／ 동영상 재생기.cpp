@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-int Check_Start_Pos(const int& pos, const int& s, const int& e)
+int Check_Start_Pos(const int pos, const int s, const int e)
 {
     if(s <= pos && pos <= e)
     {
@@ -13,7 +13,7 @@ int Check_Start_Pos(const int& pos, const int& s, const int& e)
     return pos;
 }
 
-string Convert_Time_To_String(int t, bool isMin)
+string Convert_Time_To_String(const int t, const bool isMin)
 {
     string tmpString("");
     if(isMin)
