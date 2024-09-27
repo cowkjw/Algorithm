@@ -68,15 +68,17 @@ string solution(string video_len, string pos, string op_start, string op_end, ve
         {
             tmpTime = total_Video_Len;
         }
-        else if(start <= tmpTime && tmpTime <= end)
-        {
-            tmpTime = end;
-        }
         else if(tmpTime + 10 > total_Video_Len)
         {
             tmpTime = total_Video_Len;
         }
     }
+    
+    if(start <= tmpTime && tmpTime <= end)
+    {
+            tmpTime = end;
+    }
+    
     string minute = Convert_Time_To_String(tmpTime,true);
     string sec = Convert_Time_To_String(tmpTime,false);
     answer = minute + ":" + sec; 
