@@ -46,11 +46,6 @@ string solution(string video_len, string pos, string op_start, string op_end, ve
    
     for(const auto& com : commands)
     {
-        if(start <= tmpTime && tmpTime <= end)
-        {
-            tmpTime = end;
-        }
-        
         if(com == "next")
         {
             tmpTime +=10;
@@ -72,12 +67,14 @@ string solution(string video_len, string pos, string op_start, string op_end, ve
         {
             tmpTime = total_Video_Len;
         }
+        
+        if(start <= tmpTime && tmpTime <= end)
+        {
+            tmpTime = end;
+        }
     }
     
-    if(start <= tmpTime && tmpTime <= end)
-    {
-            tmpTime = end;
-    }
+   
     
     string minute = Convert_Time_To_String(tmpTime,true);
     string sec = Convert_Time_To_String(tmpTime,false);
