@@ -63,11 +63,7 @@ string solution(string video_len, string pos, string op_start, string op_end, ve
         {
             tmpTime = total_Video_Len;
         }
-        else if(tmpTime + 10 > total_Video_Len)
-        {
-            tmpTime = total_Video_Len;
-        }
-        
+       
         if(start <= tmpTime && tmpTime <= end)
         {
             tmpTime = end;
