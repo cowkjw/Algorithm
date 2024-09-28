@@ -29,7 +29,7 @@ int solution(vector<int> mats, vector<vector<string>> park) {
     int answer = -1;
     sizeX = park[0].size();
     sizeY = park.size();
-    // 가로 세로 -1씩 찾아 나가기
+    // 가로 세로 1씩 찾아 나가기
     for(const auto mat : mats)
     {
         for(int y = 0; y < sizeY ; y++)
