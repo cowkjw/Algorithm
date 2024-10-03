@@ -8,12 +8,12 @@ long long CalculatingTime(const int level, const vector<int>& diffs, const vecto
 {
     long long totalTime(0);
     long long prevTime (0);
-    // 레벨이 낮은 경우 cur * 2  + prev * (diff - level) 만큼 시간 사용
     
     for(int i = 0 ; i<diffs.size(); i++)
     {
         if(level < diffs[i])
         {
+            // (현재 + 이전 시간) * 횟수 + 현재  
             totalTime += (times[i] + prevTime) * (diffs[i] - level) + times[i];
         }
         else
@@ -29,7 +29,7 @@ long long CalculatingTime(const int level, const vector<int>& diffs, const vecto
 int solution(vector<int> diffs, vector<int> times, long long limit) {
     int left = 1;
     int right = 100000;
-    int answer = right;
+    int answer(0);//= right;
     //반씩 쪼개서 계산??
 
     while (left <= right) 
