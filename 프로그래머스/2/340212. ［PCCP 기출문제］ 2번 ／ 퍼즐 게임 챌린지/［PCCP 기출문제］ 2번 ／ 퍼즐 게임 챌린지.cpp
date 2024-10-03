@@ -27,9 +27,9 @@ long long CalculatingTime(const int level, const vector<int>& diffs, const vecto
 }
 
 int solution(vector<int> diffs, vector<int> times, long long limit) {
-    int left = 1;
-    int right = 100000;
-    int answer(0);//= right;
+    int left(1);
+    int right(100000);
+    int answer(0);
     //반씩 쪼개서 계산??
 
     while (left <= right) 
