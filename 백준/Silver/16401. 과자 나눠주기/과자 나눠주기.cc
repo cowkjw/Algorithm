@@ -20,15 +20,16 @@ int main()
 {
 	cin >> m >> n;
 	vector<int> vec(n, 0);
+	int maxLen(0);
 	for (int i = 0; i < n; i++)
 	{
 		cin >> vec[i];
+		maxLen = max(maxLen, vec[i]);
 	}
 
-	sort(vec.begin(), vec.end());
 	int ans = 0;
 	int low = 1;
-	int high = vec.back();
+	int high = maxLen;
 
 	while (low <= high)
 	{
