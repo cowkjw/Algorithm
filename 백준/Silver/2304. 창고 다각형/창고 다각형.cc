@@ -1,46 +1,49 @@
-#include <bits/stdc++.h>
-
+#include<iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-int n;
-int main(void)
-{
-	vector<pair<int, int>> v;
 
+int main()
+{
+	int n;
+	vector<int> vec(1001, 0);
 	cin >> n;
+
+	int maxHeight = 0;
+	int maxX = 0;
+	int len = 1;
 	for (int i = 0; i < n; i++)
 	{
-		int l, h;
-		cin >> l >> h;
-		v.push_back({ l,h });
-	}
-
-	sort(v.begin(), v.end());
-
-	int area = 0;
-	auto leftBeforeWall = v[0];
-	auto rightBeforeWall = v.back();
-	for (int i = 1; i < v.size(); i++)
-	{
-
-		if (leftBeforeWall.second <= v[i].second)
+		int x, y;
+		cin >> x >> y;
+		vec[x] = y;
+		if (maxHeight < y)
 		{
-			area += (v[i].first - leftBeforeWall.first) * leftBeforeWall.second;
-			leftBeforeWall = v[i];
-		}		
-	}
+			maxHeight = y;
 
-	for (int i = v.size()-1; i >= 0; i--)
-	{
-
-		if (rightBeforeWall.second <	 v[i].second)
-		{
-			area += (rightBeforeWall.first-v[i].first )  * rightBeforeWall.second;
-			rightBeforeWall = v[i];
+			maxX = x;
 		}
+		len = max(len, x);
+
 	}
 
 
+	int ans = 0;
+	int curMaxH = 0;
+	for (int i = 1; i < maxX; i++)
+	{
+		curMaxH = max(curMaxH, vec[i]);
+		ans += curMaxH;
+	}
+	curMaxH = 0;
+	for (int i = len; i > maxX; i--)
+	{
+		curMaxH = max(curMaxH, vec[i]);
+		ans += curMaxH;
+	}
 
-	cout << area+leftBeforeWall.second;
+	cout << ans + maxHeight;
+
+	return 0;
 }
