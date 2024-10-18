@@ -15,16 +15,16 @@ int main()
 	// 그림을 그리고 세로로 세워둔 상태로 생각
 	for (int i = 0; i < n; i++)
 	{
-		int num;
-		cin >> num;
+		int he;
+		cin >> he;
 		if (i% 2 == 0)
 		{
-			vec[num]--;
+			vec[he]--;
 			vec[0]++; // 0번째는 전부 ++ 
 		}
 		else
 		{
-			vec[h - num]++;
+			vec[h - he]++;
 		}
 	}
 	vector<int>ans(h+1, 0);
@@ -32,14 +32,13 @@ int main()
 	{
 		ans[i+1] = ans[i] + vec[i];
 	}
-	ans = vector<int>(ans.begin() + 1, ans.end());
-	int ans1 = *min_element(ans.begin(), ans.end());
+	int len = *min_element(ans.begin()+1, ans.end());
 	int cnt = 0;
-	for (const auto ele : ans)
+	for (int i = 1;i <ans.size();i++)
 	{
-		if (ele == ans1) cnt++;
+		if (ans[i] == len) cnt++;
 	}
-	cout << ans1 << " " << cnt;
+	cout << len << " " << cnt;
 
 	return 0;
 }
