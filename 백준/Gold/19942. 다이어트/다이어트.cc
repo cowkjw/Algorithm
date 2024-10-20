@@ -1,77 +1,68 @@
-#include <bits/stdc++.h>
-#define INF 987654321
-typedef long long ll;
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <cmath>
+#include <string>
+#include <iterator> 
 using namespace std;
 
-int n, mp, mf, ms, mv;
-int arr[16][6];
-int ret = INF;
-
-bool check(int a, int b, int c, int d)
+int n, mp, mf, ms, mv; // 단백질, 지방, 탄수,비타
+int ans = 1e9;
+vector<vector<int>> vec;
+vector<int> arr;
+vector<int>ansNum;
+void Recur(int idx, int pro, int fat, int car, int vit, int price)
 {
-	if (a >= mp && b >= mf && c >= ms && d >= mv) return true;
-
-	return false;
-}
-
-bool comp(pair<vector<int>, int> a, pair<vector<int>, int> b)
-{
-	if (a.second != b.second)
+	if (mp <= pro && mf <= fat && ms <= car && mv <= vit)
 	{
-		return a.second < b.second;
+		if (ans > price)
+		{
+			ans = price;
+			ansNum = arr;
+		}
+		else if (ans == price)
+		{
+			if (arr < ansNum)
+			{
+				ansNum = arr;
+			}
+		}
 	}
-	return a.first < b.first;
+	if (idx == n)
+	{
+		return;
+	}
+	arr.push_back(idx + 1);
+	Recur(idx + 1, pro + vec[idx][0], fat + vec[idx][1], car + vec[idx][2], vit + vec[idx][3], +price + vec[idx][4]);
+	arr.pop_back();
+	Recur(idx + 1, pro, fat, car, vit, price);
 }
-int main(void)
+
+int main()
 {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+
 	cin >> n;
 	cin >> mp >> mf >> ms >> mv;
 	for (int i = 0; i < n; i++)
 	{
-		for (int j = 0; j < 5; j++)
-		{
-			cin >> arr[i][j];
-		}
+		int a, b, c, d, e;
+		cin >> a >> b >> c >> d >> e;
+
+		vec.push_back({ a,b,c,d,e });
 	}
-	vector<pair<vector<int>,int>> v;
-	for (int i = 0; i < (1 << n); i++) // 몇개 선택할지
-	{
-		int cnt = 0;
-		int a, b, c, d;
-		a = b = c = d = 0;
-		vector<int> temp;
-		for (int j = 0; j < n; j++)
-		{
-			if (i & (1 << j))
-			{
-				cnt += arr[j][4];
-				a += arr[j][0];
-				b += arr[j][1];
-				c += arr[j][2];
-				d += arr[j][3];
-				temp.push_back(j+1);
-			}
-		}
-		if (check(a, b, c, d))
-		{
-			if (ret >= cnt)
-			{
-				ret = cnt;
-				v.push_back({ temp,ret });
-			}
-		}
-	}
-	if (v.size() == 0)
+	Recur(0, 0, 0, 0, 0, 0);
+    
+	if (ansNum.empty())
 	{
 		cout << -1;
-		return 0 ;
+		return 0;
 	}
-
-	sort(v.begin(), v.end(), comp);
-	cout << ret << '\n';
-	for (const auto& i : v[0].first)
+    cout << ans<<'\n';
+    sort(ansNum.begin(), ansNum.end());
+	for (const auto i : ansNum)
+	{
 		cout << i << " ";
+	}
 	return 0;
 }
