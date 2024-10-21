@@ -1,45 +1,35 @@
-#include <bits/stdc++.h>
-
-#define _CRT_SECURE_NO_WARNINGS
-#define INF 987654321
-#define X first 
-#define Y second
-
-
+#include<iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-int n;
-int ans;
-vector<pair<int, int>> v(15);
-void dfs(int cnt, int sum)
-{
-	if (cnt > n)
-	{
-		return;
-	}
-	ans = max(sum, ans);
-	for (int i = cnt; i < n; i++)
-	{
-		dfs(i + v[i].first, sum + v[i].second);
-	}
-
-}
+int dp[16];
+int n, k;
+vector<pair<int, int>> vec(16);
 
 int main()
 {
 	ios::sync_with_stdio(false);
-	cin.tie(NULL);
+	cin.tie(nullptr);
 	cin >> n;
-
-
 	for (int i = 0; i < n; i++)
 	{
-		cin >> v[i].first >> v[i].second;
+		int a, b;
+		cin >> a >> b;
+		vec[i] = { a,b };
 	}
 
-
-	dfs(0, 0);
-
-	cout << ans;
+	for (int i = n; i >= 0; i--)
+	{
+		if (i + vec[i].first > n)
+		{
+			dp[i] = dp[i + 1];
+		}
+		else
+		{
+			dp[i] = max(dp[i + vec[i].first] + vec[i].second, dp[i + 1]); // 이전의 값들로 부터 
+		}
+	}
+	cout << dp[0];
 	return 0;
 }
