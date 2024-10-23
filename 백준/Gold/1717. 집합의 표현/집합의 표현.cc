@@ -10,14 +10,16 @@ using namespace std;
 int n, m;
 int parent[1000001];
 
+
 int Find_Parent(int a)
 {
 	if (parent[a] == a)
 		return a;
 
-	// 경로 단축 루트 노드로 연결 시키기
-	return parent[a] = Find_Parent(parent[a]);
+	parent[a] = Find_Parent(parent[a]);
+	return Find_Parent(parent[a]);
 }
+
 void Uni(int a, int b)
 {
 	a = Find_Parent(a);
@@ -26,7 +28,6 @@ void Uni(int a, int b)
 	if (a != b)
 		parent[a] = b; // a의 루트를 b에 연결
 }
-
 
 int main(void)
 {
