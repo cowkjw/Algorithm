@@ -1,57 +1,44 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <tuple>
 
-#define _CRT_SECURE_NO_WARNINGS
 #define INF 987654321
-#define X first 
-#define Y second
-
-
 using namespace std;
-
-bool vis[100001];
-int main()
+int n;
+vector<int> tree[100001];
+int parent[100001];
+void PreOrder(int node,int prev)
 {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
+	parent[node] = prev;// 현재 노드의 부모
 
-	int n;
+	for (const auto child : tree[node])
+	{
+		if (child == prev) continue;
+		PreOrder(child, node);
+	}
+}
+int main(void)
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+
 	cin >> n;
-	vector<list<int>> tree(n + 1);
-	vector<int> answer(n + 1);
-	for (int i = 0; i < n - 1; i++)
-	{
-		int u, v;
-		cin >> u >> v;
 
-		tree[u].push_back(v);
-		tree[v].push_back(u);
+	for (int i = 0; i < n-1; i++)
+	{
+		int a, b;
+		cin >> a >> b;
+		tree[a].push_back(b);
+		tree[b].push_back(a);
 	}
 
+	PreOrder(1,0);
 
-	queue<int> q;
-
-	vis[1] = true;
-	q.push(1);
-
-	while (!q.empty())
+	for (int i = 2; i <= n; i++)
 	{
-		auto parent = q.front();
-		q.pop();
-
-		for (const auto& node : tree[parent])
-		{
-			if (!vis[node])
-			{
-				answer[node] = parent;
-				vis[node] = true;
-				q.push(node);
-			}
-		}
-	}
-
-	for (int i =2 ;i<=n;i++)
-	{
-		cout << answer[i]<< '\n';
+		cout << parent[i] << '\n';
 	}
 	return 0;
 }
