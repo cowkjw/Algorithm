@@ -1,32 +1,38 @@
-#include <bits/stdc++.h>
-#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <tuple>
+
 #define INF 987654321
-#define X first 
-#define Y second
 using namespace std;
-typedef long long ll;
-int n,len,lis[501];
-vector<pair<int,int>>v;
-int main()
+
+int dp[101];
+int main(void)
 {
-    cin >> n;
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
 
-    for (int i = 0; i < n; i++)
-    {
-        int s, e;
-        cin >> s >> e;
-        
-        v.push_back({ s,e });
-    }
-    sort(v.begin(), v.end());
+	int n;
+	cin >> n;
+	vector<pair<int, int>> vec(n);
+	for (int i = 0; i < n; i++)
+	{
+		cin >> vec[i].first>>vec[i].second;
+	}
+	sort(vec.begin(), vec.end());
 
-    for (int i = 0; i < n; i++)
-    {
-        auto lowerPos = lower_bound(lis, lis + len, v[i].second);
-        if (*lowerPos == 0) len++;
-        *lowerPos = v[i].second;
-    }
-    cout << n - len;
+	fill(dp, dp + 101, 1);
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (vec[i].second > vec[j].second)
+			{
+				dp[i] = max(dp[i], dp[j] + 1);
+			}
+		}
+	}
+	cout << n - *max_element(dp, dp + 101);
+	return 0;
 }
-
-
