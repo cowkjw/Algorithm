@@ -48,22 +48,14 @@ struct Tree
         }
     }
 
-    void Preorder(vector<int>& ans, Node* node)
-    {
-        if (node == nullptr) return;
-
-        ans.push_back(node->data.second);
-        Preorder(ans, node->left);
-        Preorder(ans, node->right);
-    }
-    
-    void Postorder(vector<int>& ans, Node* node)
+    void Order(vector<vector<int>>& ans, Node* node)
     {
         if (node == nullptr) return;
         
-        Postorder(ans, node->left);
-        Postorder(ans, node->right);
-        ans.push_back(node->data.second);
+        ans[0].push_back(node->data.second);
+        Order(ans, node->left);
+        Order(ans, node->right);
+        ans[1].push_back(node->data.second);
     }
 
     Node* Create(const pair<int, int>& _data)
@@ -110,7 +102,6 @@ vector<vector<int>> solution(vector<vector<int>> nodeinfo) {
     {
         tree.Insert(tree.root, { treeNode[i][0],treeNode[i][2] });
     }
-    tree.Preorder(answer[0], tree.root);
-    tree.Postorder(answer[1],tree.root);
+    tree.Order(answer,tree.root);
     return answer;
 }
