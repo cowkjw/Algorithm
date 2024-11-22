@@ -30,8 +30,8 @@ int solution(int n, vector<int> stations, int w)
    
     for(const int emtLen : vecEmptyLen)
     {
-        int range = 2 * w + 1; 
-        answer += (emtLen + range - 1) / range; 
+        int range = 2 * w +1; 
+        answer += ceil((double)emtLen / range);
     }
     
     return answer;
