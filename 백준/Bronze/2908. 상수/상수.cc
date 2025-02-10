@@ -20,7 +20,7 @@ int main()
 	reverse(str1.begin(), str1.end());
 	reverse(str2.begin(), str2.end());
 
-	cout << (stoi(str1)> stoi(str2) ? str1: str2);
+	cout << max(stoi(str1),stoi(str2));
 
 	return 0;
 }
