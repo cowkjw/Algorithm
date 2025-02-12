@@ -47,7 +47,7 @@ int main()
 			if (a == -1) break;
 			cin >> cost;
 			vec[v].push_back({ a, cost });
-			vec[a].push_back({ v, cost });
+			//vec[a].push_back({ v, cost });
 		}
 	}
 	DFS(1, 0);
