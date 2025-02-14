@@ -14,7 +14,7 @@
 using namespace std;
 
 vector<int> graph[101];
-int dist[101];
+bool vis[101];
 int n, m;
 int main()
 {
@@ -36,31 +36,28 @@ int main()
 	int preMin = 1000000000;
 	for (int i = 1; i <= n; i++)
 	{
-		fill(dist, dist + 101, 0);
+		fill(vis, vis + 101, false);
 		queue<pair<int, int>>q;
 		q.push({ i,0 });
-		dist[i] = 0;
+		vis[i] = true;
+		int cnt = 0;
 		while (!q.empty())
 		{
 			int cur = q.front().first;
 			int cost = q.front().second;
+			cnt += cost;
 			q.pop();
 			for (const auto& nextNode : graph[cur])
 			{
 				int nextCost = cost + 1;
 
-				if (dist[nextNode]) continue;
+				if (vis[nextNode]) continue;
 
-				dist[nextNode] = nextCost;
+				vis[nextNode] = true;
 				q.push({ nextNode, nextCost });
 			}
 		}
 
-		int cnt = 0;
-		for (int j = 1; j <= n; j++)
-		{
-			if (i != j) cnt += dist[j];
-		}
 		if (preMin > cnt)
 		{
 			preMin = cnt;
