@@ -19,25 +19,13 @@ const int dy[4]{ 0,0,1,-1 };
 int main()
 {
 	int n, m;
-	cin >> n>>m;
-	vector<int>vec(n+1);
-	for (int i = 2; i <= n; i++)
-	{
-		vec[i] = n;
-	}
+	cin >> n >> m;
+	vector<int>vec(n + 1,1);
 
 	int cnt = 0;
-	for (int i = 2; i<= n; i ++)
+	for (int i = 2; i <= n; i++)
 	{
-		if (vec[i] == 0) continue;
-		vec[i] = 0;
-		cnt++;
-		if (cnt == m)
-		{
-			cout << i;
-			return 0;
-		}
-		for (int j = 2*i; j <= n; j += i)
+		for (int j = i; j <= n; j += i)
 		{
 			if (vec[j] == 0) continue;
 			vec[j] = 0;
