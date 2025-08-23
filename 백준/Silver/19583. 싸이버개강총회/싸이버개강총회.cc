@@ -26,40 +26,28 @@ int main()
 	int endTime = (stoi(chongTime.substr(6, 2)) * 60) + stoi(chongTime.substr(9, 2));
 	int endStreming = (stoi(chongTime.substr(12, 2)) * 60) + stoi(chongTime.substr(15, 2));
 
-	map<string, int> timeMap;
-	unordered_set<string> enteredUsers;
+	unordered_set<string> enteredUsers, exitedUsers;
 	string timeAndName;
 	int ans = 0;
 	while (getline(cin, timeAndName))
 	{
 		int time = (stoi(timeAndName.substr(0, 2)) * 60) + stoi(timeAndName.substr(3, 2));
 		string name = timeAndName.substr(6);
-		if (timeMap.find(name) != timeMap.end())
-		{
-			if (enteredUsers.find(name) != enteredUsers.end())
-			{
-				continue; // 이미 들어온 유저는 무시
-			}
-			int enterTime = timeMap[name];
-			// 이미 들어와 있었다면 들어온 시간과 지금 시간 비교
-			// 만약 들어온 시간이 시작 시간보다 작거나 같고, 지금 시간이 시작 시간보다 크거나 같다면
-			if (enterTime <= startTime)
-			{
-				if (endTime <= time && time <= endStreming)
-				{
-					enteredUsers.insert(name);
-				
-					ans++;
-				}
-			}
-		}
-		else
-		{
-			if (time <= startTime )
-			{
-				timeMap[name] = time;
-			}
 
+		if (time <= startTime)
+		{
+			enteredUsers.insert(name);
+		}
+		else if (time >= endTime && time <= endStreming)
+		{
+			exitedUsers.insert(name);
+		}
+	}
+	for (const string& user : enteredUsers)
+	{
+		if (exitedUsers.find(user) != exitedUsers.end())
+		{
+			ans++;
 		}
 	}
 	cout << ans;
