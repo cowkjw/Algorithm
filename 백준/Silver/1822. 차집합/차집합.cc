@@ -29,31 +29,13 @@ int main()
 	for (int i = 0; i < m; i++) cin >> B[i];
 	sort(A.begin(), A.end());
 	sort(B.begin(), B.end());
-	vector<int> ans;
-	int a = 0; int b = 0;
 
-	while (a < n && b < m)
-	{
-		if (A[a] < B[b])
-		{
-			ans.push_back(A[a]);
-			a++;
-		}
-		else if (A[a] == B[b])
-		{
-			a++;
-			b++;
-		}
-		else
-		{
-			b++;
-		}
-	}
-	while (a < n)
-	{
-		ans.push_back(A[a]);
-		a++;
-	}
+	vector<int> ans;
+	set_difference(
+		A.begin(), A.end(),   
+		B.begin(), B.end(),   
+		back_inserter(ans)  
+	);
 	cout << ans.size() << '\n';
 	for (int i = 0; i < ans.size(); i++)
 	{
