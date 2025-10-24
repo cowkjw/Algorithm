@@ -26,6 +26,7 @@ const int dy[] = { 0,0,-1,1 };
 const int hDx[] = { -2,-2,-1,-1,1,1,2,2 };
 const int hDy[] = { -1,1,-2,2,-2,2,-1,1 };
 
+
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -41,27 +42,24 @@ int main()
 			cin >> legos[i];
 		sort(legos.begin(), legos.end());
 		int l = 0, r = n - 1;
-		vector<pair<ll,pii>> ans;
 		while (l < r)
 		{
 			ll sum = legos[l] + legos[r];
 			if (sum == x)
 			{
-				ans.push_back({ abs(legos[l] - legos[r]),{ legos[l],legos[r] } });
-				l++;
+				cout << "yes " << legos[l] << " " << legos[r] << "\n";
+				break;
 			}
 			else if (sum < x)
 				l++;
 			else
 				r--;
 		}
-		if (ans.size() == 0)
+		if (l >= r)
 		{
 			cout << "danger\n";
 			continue;
 		}
-		sort(ans.begin(), ans.end());
-		cout << "yes " << ans.back().second.first << " " << ans.back().second.second << "\n";
 	}
 	return 0;
 }
