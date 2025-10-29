@@ -17,24 +17,6 @@ using ll = long long;
 using pii = pair<int, int>;
 #define INF 987654321
 
-
-int parent[1001];
-
-int Find(int u)
-{
-	if (parent[u] == u) return u;
-	return parent[u] = Find(parent[u]);
-}
-
-void Union(int u, int v)
-{
-	u = Find(u);
-	v = Find(v);
-	if (u != v)
-		parent[u] = v;
-}
-
-
 int n, m, d;
 bool prime[1000001]{ true, };
 
@@ -62,19 +44,17 @@ int main()
 	while (t--)
 	{
 		cin >> m;
-		int left = m / 2;
-		int right = m / 2;
-		set<pii> s;
-		while (left >= 2)
+		int cnt = 0;
+
+		for (int left = 2; left <= m / 2; left++)
 		{
+			int right = m - left;
 			if (prime[left] && prime[right])
 			{
-				s.insert({left, right});
+				cnt++;
 			}
-			left--;
-			right++;
 		}
-		cout << s.size() << '\n';
+        cout<<cnt<<'\n';
 	}
 	return 0;
 }
