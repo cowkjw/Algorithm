@@ -26,16 +26,13 @@ int main()
 	sort(people.begin(), people.end());
 
 	vector<string> check;
-	for (int i = 0; i < people.size()-1;)
+	for (int i = 0; i < people.size()-1; i++)
 	{
 		if (people[i] == people[i + 1])
 		{
 			cnt++;
 			check.push_back(people[i]);
-			i += 2;
 		}
-		else
-			i++;
 	}
 	cout << cnt << "\n";
 	
