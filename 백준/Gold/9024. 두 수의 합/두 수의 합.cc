@@ -18,9 +18,6 @@ using ll = long long;
 using pii = pair<int, int>;
 #define INF 987654321
 
-const int dx[]{ 0,0,1,-1 };
-const int dy[]{ 1,-1,0,0 };
-
 int n, m;
 int main()
 {
@@ -42,26 +39,17 @@ int main()
 		sort(vec.begin(), vec.end());
 		int l = 0, r = n - 1;
 		ll minDiff = 1e18;
-
-		while (l < r)
-		{
-			ll sum = vec[l] + vec[r];
-			minDiff = min(abs(sum - m), minDiff);
-			if (m <sum)
-			{
-				r--;
-			}
-			else if (m>=sum)
-			{
-			    l++;
-			}
-		}
-		 l = 0, r = n - 1;
 		 int ans = 0;
 		 while (l < r)
 		 {
 			 ll sum = vec[l] + vec[r];
 			 if (minDiff == abs(sum - m)) ans++;
+
+			 if (minDiff > abs(sum - m))
+			 {
+				 minDiff = abs(sum - m);
+				 ans = 1;
+			 }
 			 if (m < sum)
 			 {
 				 r--;
