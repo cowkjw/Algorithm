@@ -1,42 +1,60 @@
-#include <bits/stdc++.h>
-#define _CRT_SECURE_NO_WARNINGS
-#define INF 987654321
-#define X first 
-#define Y second
-using namespace std;
-typedef long long ll;
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <queue>
+#include <stack>
+#include <string>
+#include <tuple>
+#include <cmath>
+#include <map>
+#include <set>
+#include <unordered_set>
+#include <unordered_map>
+#include <numeric>
+#include <climits>
 
-int n;
+using namespace std;
+using ll = long long;
+using pii = pair<int, int>;
+#define INF 987654321
+
+const int dx[4] = { 1, 0, -1, 0 };
+const int dy[4] = { 0, 1, 0, -1 };
+
+int n, m;
 
 int main()
 {
 	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+	cin.tie(nullptr);
+	cout.tie(nullptr);
 
-	vector<pair<int, int>> v;
-	priority_queue<int> pq;
-	cin >> n;
-	for (int i = 0; i < n; i++)
+	priority_queue<int, vector<int>, greater<int>> pq;
+	cin >> m;
+
+	int ans = 0;
+	vector<pii> vec;
+	for (int i = 1; i <= m; i++)
 	{
-		int a, b, c;
-		cin >> a >> b >> c;
-		v.push_back({ b,c });
+		int num, s, e;
+		cin >> num >> s >> e;
+		vec.push_back({ s,e });
 	}
-	
-	sort(v.begin(), v.end());
+	sort(vec.begin(), vec.end());
 
-	int ret = 0;
-	for (const auto& i : v)
+	for (int i = 0; i < vec.size(); i++)
 	{
-		while (!pq.empty() && i.first >= -pq.top()) // 강의실 유지
-		{
+		auto [s, e] = vec[i];
+
+		// 끝나는 시간을 넣어줬으니까 지금 비교하는 시작 시간보다 더 작으면
+		// 지금 강의를 들을 수 있는거
+		// 아니라면 강의실을 새로 만들어야함
+		while (!pq.empty() && pq.top() <= s)
 			pq.pop();
-		}
-		pq.push({ -i.second });
-		ret = max(ret, (int)pq.size());
+
+		pq.push(e);
+		ans = max(ans, (int)pq.size());
 	}
-	cout << ret;
+	cout << ans;
 	return 0;
 }
-
