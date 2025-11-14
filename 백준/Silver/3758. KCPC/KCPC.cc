@@ -26,7 +26,6 @@ int n, m;
 
 struct Problem
 {
-	int cnt; // 제출 횟수
 	int score;// 점수
 };
 struct Team
