@@ -70,7 +70,7 @@ string trim(string s)
 	return s.substr(start, end - start + 1);
 }
 
-set<pii> pos;
+vector<pair<int, int>> pos;
 bool hasFood[101][101];
 int vis[101][101];
 int main()
@@ -84,7 +84,7 @@ int main()
 	{
 		int r,c;
 		cin >> r >> c;
-		pos.insert({ r,c });
+		pos.push_back({ r,c });
 		hasFood[r][c] = 1;
 	}
 	int ans = 0;
