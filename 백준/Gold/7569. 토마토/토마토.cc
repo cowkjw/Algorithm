@@ -1,102 +1,102 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <queue>
+#include <unordered_map>
+#include<deque>
+#include <list>
+#include<numeric>
+#include <string>
+#include <stack>
+#include <algorithm>
+#include <unordered_set>
+#include <functional>
+#include <set>
+#include <map>
+#include <sstream>
+#include <cstring>
 using namespace std;
 #define INF 987654321
-int n, m, h;
-int board[101][101][101]; // 높이 행 열
-int dx[]{ 1,-1,0,0,0,0 };
-int dy[]{ 0,0,1,-1,0,0 };
-int dz[]{ 0,0,0,0,-1,1 };
-int ret = -1;
-queue <pair<int, pair<int, int>>> q;
+#define LL_INF 1e15
 
-void go()
+
+using ll = long long;
+using pii = pair<int, int>;
+
+int n, m, k;
+
+const int dx[] = { -1,1,0,0 };
+const int dy[] = { 0,0,-1,1 };
+const int dh[] = { -1,1};
+
+struct Pos
 {
-	while (!q.empty())
-	{
-		int a, x, y;
-		auto cur = q.front();
-		a = cur.first;
-		x = cur.second.first;
-		y = cur.second.second;
-		q.pop();
-		for (int i = 0; i < 6; i++)
-		{
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			int na = a + dz[i];
+	int h, y, x;
+};
 
-			if (nx < 0 || ny < 0 || na < 0 || nx >= n || ny >= m || na >= h) continue;
-			if (board[na][nx][ny] == -1) continue; // 토마토가 없을 때 
-			if (board[na][nx][ny] == 0)
-			{
-				board[na][nx][ny] = board[a][x][y] + 1;
-				q.push({ na,{nx,ny} });
-			}
-		}
-	}
-}
-
-bool CanAllTomato()
-{
-	for (int t = 0; t < h; t++)
-	{
-		for (int i = 0; i < n; i++)
-		{
-			for (int j = 0; j < m; j++)
-			{
-				if (board[t][i][j] == 0)
-				{
-					return false;
-				}
-				ret = max(board[t][i][j], ret);
-			}
-		}
-	}
-	return true;
-}
-
-int main(void)
+int board[101][101][101];
+int main()
 {
 	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-
-	cin >> m >> n >> h;
-	bool can = false;
-	for (int t = 0; t < h; t++)
+	cin.tie(0);
+	cout.tie(0);
+	cin >> m >> n >> k;
+	queue<Pos> q;
+	int tomato = 0;
+	for (int h = 0; h < k; h++)
 	{
 		for (int i = 0; i < n; i++)
 		{
 			for (int j = 0; j < m; j++)
 			{
-				cin >> board[t][i][j];
-				if (board[t][i][j] == 0)
+				cin >> board[h][i][j];
+
+				if (board[h][i][j] == 1)
 				{
-					can = true;
+					q.push({ h, i, j });
 				}
-				else if (board[t][i][j] == 1)
+
+				if (board[h][i][j] != -1)
 				{
-					q.push({ t,{i,j} });
+					tomato++;
 				}
 			}
 		}
 	}
 
-	if (!can)
+	if (tomato == q.size())
 	{
 		cout << 0;
 		return 0;
 	}
-
-	go();
-
-	if (CanAllTomato())
+	tomato -= q.size();
+	int ans = -1;
+	while (!q.empty())
 	{
+		auto [h, y, x] = q.front();
+		q.pop();
 
-		cout << ret-1;
+		for (int dir = 0; dir < 4; dir++)
+		{
+			int ny = y + dy[dir];
+			int nx = x + dx[dir];
+			if (ny < 0 || nx < 0 || ny >= n || nx >= m || board[h][ny][nx] != 0) continue;
+			board[h][ny][nx] = board[h][y][x] + 1;
+			q.push({ h,ny,nx });
+			ans = max(ans, board[h][ny][nx]);
+			tomato--;
+		}
+
+		for (int dir = 0; dir < 2; dir++)
+		{
+			int nh = h + dh[dir];
+
+			if (nh < 0 || nh >= k || board[nh][y][x] != 0) continue;
+			board[nh][y][x] = board[h][y][x] + 1;
+			q.push({ nh,y,x });
+			ans = max(ans, board[nh][y][x]);
+			tomato--;
+		}
 	}
-	else
-	{
-		cout << -1;
-	}
+	if (tomato != 0) cout << -1;
+	else cout << ans-1;
 	return 0;
 }
