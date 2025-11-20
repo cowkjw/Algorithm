@@ -31,31 +31,39 @@ int main()
 	cout.tie(nullptr);
 
 	cin >> n >> m;
-	vector<vector<int>> prefix(n + 1, vector<int>(m + 1));
+	vector<vector<int>> arr(n + 1, vector<int>(m + 1));
 	int ans = (int)-1e9;
 	for (int i = 1; i <= n; i++)
 	{
 		for (int j = 1; j <= m; j++)
 		{
-			int num;
-			cin >> num;
-			prefix[i][j] = num + prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1];
+			cin >> arr[i][j];
 		}
 	}
 
-	for (int i = 1; i <= n; i++)
+	for (int top = 1; top <= n; top++)
 	{
-		for (int j = 1; j <= m; j++)
+		vector<int> tmp(m + 1);
+
+		for (int bt = top; bt <= n; bt++)
 		{
-			for (int k = 1; k <= i; k++)
+			for (int col = 1; col <= m; col++)
 			{
-				for (int l = 1; l <= j; l++)
-				{
-					// k,l ~ i,j
-					int sum = prefix[i][j] - prefix[k - 1][j] - prefix[i][l - 1] + prefix[k - 1][l - 1];
-					ans = max(sum, ans);
-				}
+				tmp[col] += arr[bt][col];
 			}
+
+			int best = (int)-1e9;
+			int cur = 0;
+
+			for (int col = 1; col <= m; col++)
+			{
+				cur += tmp[col];
+
+				best = max(best, cur);
+				if (cur < 0) cur = 0;
+			}
+
+			ans = max(ans, best);
 		}
 	}
 
