@@ -1,0 +1,24 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() 
+{
+	int n,d;
+	cin>>n>>d;
+	vector<int> arr(n);
+for(int i = 0;i<n;i++) cin>>arr[i];
+	sort(arr.begin(),arr.end());
+	int ans =-1;
+	int s = 0 ;
+
+	for(int e = 0;e<n;e++)
+		{
+			   while (arr[e] - arr[s] > d)
+            s++;
+			ans = max(e-s+1,ans);
+		}
+	cout<<n-ans;
+	return 0;
+}
