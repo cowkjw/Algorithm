@@ -1,0 +1,59 @@
+#include <iostream>
+#include <stack>
+#include <set>
+using namespace std;
+
+int main() {
+
+    string str;
+    int n;
+    cin >> n;
+    cin >> str;
+
+    int y = 0, x = 0;
+    int ans = 1; // 처음 (0,0) 블록 점수
+
+    stack<pair<int,pair<int,int>>> s;
+    set<pair<int,int>> se;
+
+    // 초기 블록
+    s.push({1, {0,0}});
+    se.insert({0,0});
+
+    for (int i = 0; i < n; i++)
+    {
+        char cur = str[i];
+        int score;
+        cin >> score;
+
+        if (cur == 'R') x++;
+        else if (cur == 'L') x--;
+        else if (cur == 'U') y--;
+        else y++;
+
+        // 겹침 발생?
+        if (se.count({y, x}))
+        {
+            // 최근 push된 블록부터 제거
+            while (!s.empty())
+            {
+                int py = s.top().second.first;
+                int px = s.top().second.second;
+
+                ans -= s.top().first;
+                s.pop();
+                se.erase({py, px});
+
+                if (py == y && px == x)
+                    break;
+            }
+        }
+
+        s.push({score, {y, x}});
+        se.insert({y, x});
+        ans += score;
+    }
+
+    cout << ans;
+    return 0;
+}
