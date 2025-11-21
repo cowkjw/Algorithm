@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+int prefix[1001][1001];
+int diff[1001][1001];
+int main()
+{
+	int ans = 0;
+	int n,k;
+	cin>>n>>k;
+	// 종, 영역에 k 개 이하일 때 공생
+	for(int i = 0;i<n;i++)
+		{
+			int x1,y1,x2,y2;
+			cin>>x1>>y1>>x2>>y2;
+			diff[y1][x1] += 1;
+			diff[y1][x2] -= 1;
+			diff[y2][x1] -= 1;
+			diff[y2][x2] += 1;
+		}
+
+ for(int y = 0; y <= 1000; y++)
+    {
+        for(int x = 0; x <= 1000; x++)
+        {
+            int a = (y > 0 ? prefix[y-1][x] : 0);
+            int b = (x > 0 ? prefix[y][x-1] : 0);
+            int c = (y > 0 && x > 0 ? prefix[y-1][x-1] : 0);
+
+            prefix[y][x] = a + b - c + diff[y][x];
+        }
+    }
+
+    for(int y = 0; y <= 1000; y++)
+    {
+        for(int x = 0; x <= 1000; x++)
+        {
+            if(prefix[y][x] == k) ans++;
+        }
+    }
+	cout<<ans;
+	return 0;
+}
