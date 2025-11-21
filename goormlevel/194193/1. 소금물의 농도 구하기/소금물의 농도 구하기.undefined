@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+
+	double n,m;
+	cin>>n>>m;
+		double salt = n * 0.07;
+    double total = n + m;
+    double concentration = (salt / total) * 100;
+
+    // 버림 처리
+    concentration = floor(concentration * 100.0) / 100.0;
+
+    cout << fixed;
+    cout.precision(2);
+    cout << concentration;
+	return 0;
+}
