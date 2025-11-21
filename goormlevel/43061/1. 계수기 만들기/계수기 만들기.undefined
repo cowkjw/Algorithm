@@ -1,0 +1,44 @@
+#include <iostream>
+#include<string>
+using namespace std;
+int maxNum[9];
+int main() {
+
+int n;
+		cin >> n;
+
+	for (int i = 1; i <=n; i++)
+	{
+		int a;
+		cin >> a;
+		maxNum[i] = a;
+	}
+	string str;
+	for (int i = 1; i <= n; i++)
+	{
+		char l;
+		cin >> l;
+		str += l;
+	}
+	int k;
+	
+	cin >> k;
+	//65 66 67 68 70 71 72
+	for (int i = 1; i <= k; i++)
+	{
+		str[str.size() - 1] = ((str[str.size() - 1] - '0') + 1) +'0';
+		for (int j = n; j >= 1; j--)
+		{
+			if (maxNum[j] < (str[j - 1] - '0'))
+			{
+				str[j - 1] = '0';
+				if (j - 1 >= 1)
+				{
+					str[j - 2] = ((str[j - 2] - '0') + 1) + '0';
+				}
+			}
+		}
+	}
+	cout << str;
+	return 0;
+}
