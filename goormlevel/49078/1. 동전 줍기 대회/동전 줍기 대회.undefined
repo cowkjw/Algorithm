@@ -9,8 +9,6 @@ int main()
 	cin>>n;
 	vector<int> arr(n+1);
 	for(int i = 1;i<=n;i++)cin>>arr[i];
-	fill(dp,dp+n+1,0);
-	dp[0] = 0;
 	// dp[1] = arr[i];
 	// dp[2] = dp[1] + arr[2], dp[1]
 	// dp[3] = dp[2] + arr[3], dp[2]
