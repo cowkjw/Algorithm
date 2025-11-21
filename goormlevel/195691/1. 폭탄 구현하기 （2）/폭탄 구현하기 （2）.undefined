@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+char board[201][201];
+int ans[201][201];
+int dx[]{1,-1,0,0};
+int dy[]{0,0,1,-1};
+int main() {
+
+	int n,m;
+	cin>>n>>m;
+		int maxNum = 0;
+	for(int i = 1;i<=n;i++)
+		{
+			for(int j = 1;j<=n;j++)
+				{
+					cin>>board[i][j];
+				}
+		}
+
+
+	for(int i = 0;i<m;i++)
+		{
+			int y,x;
+			cin>>y>>x;
+			if(board[y][x] != '#')
+			{
+				ans[y][x] += (board[y][x] == '@' ? 2 : 1);
+				maxNum = max(ans[y][x],maxNum);
+			}
+			
+        for(int dir = 0; dir < 4; dir++) {
+            int ny = y + dy[dir];
+            int nx = x + dx[dir];
+
+            if(nx <= 0 || ny <= 0 || nx > n || ny > n) continue;
+            if(board[ny][nx] == '#') continue;
+
+            ans[ny][nx] += (board[ny][nx] == '@' ? 2 : 1);
+						maxNum = max(ans[ny][nx] ,maxNum);
+        }
+		}
+
+	cout<<maxNum;
+	return 0;
+}
